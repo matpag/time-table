@@ -16,7 +16,7 @@ pipeline {
                 ])
 
                 // Build and Test
-                sh 'xcodebuild -scheme "TimeTable" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 6,OS=10.1" -enableCodeCoverage YES | /usr/local/bin/xcpretty -r junit'
+                sh 'xcodebuild -scheme "TimeTable" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 7,OS=12.2" -enableCodeCoverage YES | /usr/local/bin/xcpretty -r junit'
 
                 // Publish test restults.
                 step([$class: 'JUnitResultArchiver', allowEmptyResults: true, testResults: 'build/reports/junit.xml'])
@@ -44,11 +44,11 @@ pipeline {
             }
         }
 
-        stage ('Notify') {
-            steps {
-                // Send slack notification
-                slackSend channel: '#my-team', message: 'Time Table - Successfully', teamDomain: 'my-team', token: 'my-token'
-            }
-        }
+        //stage ('Notify') {
+        //    steps {
+        //        // Send slack notification
+        //        slackSend channel: '#my-team', message: 'Time Table - Successfully', teamDomain: 'my-team', token: 'my-token'
+        //    }
+        //}
     }
 }
