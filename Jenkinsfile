@@ -40,7 +40,7 @@ pipeline {
 
                     // Publish checkstyle result
                     step([$class: 'CheckStylePublisher', canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'checkstyle.xml', unHealthy: ''])
-                }, failFast: true|false
+                }, failFast: true
             }
         }
 
